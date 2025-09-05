@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { signIn } from "@/lib/auth-client";
 import { Loader2 } from "lucide-react";
+import { LiquidGlassButton } from "@/components/ui/liquid-glass-button";
 
 export default function SignInPage() {
     const [email, setEmail] = useState("");
@@ -42,11 +43,11 @@ export default function SignInPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-background px-4">
-            <Card className="w-full max-w-md">
+        <div className="min-h-screen flex items-center justify-center bg-black px-4">
+            <Card className="w-full max-w-md bg-black/20 backdrop-blur-lg border border-white/20 rounded-2xl">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold">Sign In</CardTitle>
-                    <CardDescription>
+                    <CardTitle className="text-2xl font-bold text-white">Sign In</CardTitle>
+                    <CardDescription className="text-white/80">
                         Enter your email and password to access your account
                     </CardDescription>
                 </CardHeader>
@@ -58,7 +59,7 @@ export default function SignInPage() {
                             </Alert>
                         )}
                         <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
+                            <Label htmlFor="email" className="text-white">Email</Label>
                             <Input
                                 id="email"
                                 type="email"
@@ -67,10 +68,11 @@ export default function SignInPage() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                                 disabled={isLoading}
+                                className="bg-black/20 border-white/20 text-white placeholder-white/50"
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
+                            <Label htmlFor="password" className="text-white">Password</Label>
                             <Input
                                 id="password"
                                 type="password"
@@ -79,9 +81,10 @@ export default function SignInPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 disabled={isLoading}
+                                className="bg-black/20 border-white/20 text-white placeholder-white/50"
                             />
                         </div>
-                        <Button type="submit" className="w-full" disabled={isLoading}>
+                        <LiquidGlassButton type="submit" className="w-full rounded-lg py-3" disabled={isLoading} variant="default">
                             {isLoading ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -90,13 +93,13 @@ export default function SignInPage() {
                             ) : (
                                 "Sign In"
                             )}
-                        </Button>
+                        </LiquidGlassButton>
                     </form>
                 </CardContent>
                 <CardFooter className="text-center">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-white/80">
                         Don&apos;t have an account?{" "}
-                        <Link href="/sign-up" className="font-medium text-primary hover:underline">
+                        <Link href="/sign-up" className="font-medium text-white hover:underline">
                             Sign up
                         </Link>
                     </p>

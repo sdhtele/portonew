@@ -1,0 +1,355 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Liquid Glass Theme Variables */
+:root {
+  --liquid-primary: #6366f1;
+  --liquid-primary-light: #818cf8;
+  --liquid-primary-dark: #4f46e5;
+  --liquid-secondary: #0ea5e9;
+  --liquid-accent: #ec4899;
+  --liquid-bg: #0f172a;
+  --liquid-bg-light: #1e293b;
+  --liquid-text: #f1f5f9;
+  --liquid-text-secondary: #94a3b8;
+  --liquid-glass: rgba(30, 41, 59, 0.4);
+  --liquid-glass-light: rgba(30, 41, 59, 0.2);
+  --liquid-glass-strong: rgba(15, 23, 42, 0.7);
+  --liquid-glass-border: rgba(99, 102, 241, 0.3);
+  --liquid-wave-1: rgba(99, 102, 241, 0.1);
+  --liquid-wave-2: rgba(14, 165, 233, 0.1);
+  --liquid-wave-3: rgba(236, 72, 153, 0.1);
+}
+
+/* Base Styles */
+.liquid-bg {
+  background: linear-gradient(135deg, var(--liquid-bg) 0%, #1e1b4b 100%);
+  color: var(--liquid-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fluid Typography */
+.liquid-heading {
+  font-family: 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.liquid-subheading {
+  font-family: 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.liquid-body {
+  font-family: 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+/* Liquid Glass Effects */
+.liquid-glass-card {
+  background: var(--liquid-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--liquid-glass-border);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  position: relative;
+}
+
+.liquid-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--liquid-primary), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.liquid-glass-card:hover {
+  transform: translateY(-8px);
+  border: 1px solid var(--liquid-primary);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.liquid-glass-card:hover::before {
+  transform: scaleX(1);
+}
+
+.liquid-glass-strong {
+  background: var(--liquid-glass-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--liquid-glass-border);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.liquid-glass-light {
+  background: var(--liquid-glass-light);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+}
+
+/* Liquid Buttons */
+.liquid-button {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  background: linear-gradient(90deg, var(--liquid-primary), var(--liquid-secondary));
+  color: white;
+  border: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.liquid-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.6s;
+}
+
+.liquid-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+.liquid-button:hover::before {
+  left: 100%;
+}
+
+.liquid-button-outline {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  background: transparent;
+  color: var(--liquid-primary);
+  border: 1px solid var(--liquid-primary);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.liquid-button-outline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--liquid-primary), var(--liquid-secondary));
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: -1;
+  border-radius: 16px;
+}
+
+.liquid-button-outline:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.liquid-button-outline:hover::after {
+  width: 100%;
+}
+
+/* Form Elements */
+.liquid-input {
+  background: var(--liquid-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--liquid-glass-border);
+  color: var(--liquid-text);
+  padding: 1rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.liquid-input:focus {
+  outline: none;
+  border: 1px solid var(--liquid-primary);
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+.liquid-input::placeholder {
+  color: var(--liquid-text-secondary);
+}
+
+/* Animations */
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-20px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom Animations */
+.animate-liquid-wave {
+  animation: wave 8s ease-in-out infinite;
+}
+
+.animate-liquid-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-liquid-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-liquid-shimmer {
+  background: linear-gradient(to right, 
+    rgba(99, 102, 241, 0.1) 0%, 
+    rgba(14, 165, 233, 0.2) 50%, 
+    rgba(99, 102, 241, 0.1) 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Decorative Elements */
+.liquid-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--liquid-primary), transparent);
+  width: 100%;
+  max-width: 200px;
+  margin: 2rem auto;
+}
+
+.liquid-wave-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z' fill='%236366f1' fill-opacity='0.1'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.liquid-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.3;
+  mix-blend-mode: screen;
+  z-index: -1;
+}
+
+.liquid-blob-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(90deg, var(--liquid-primary), var(--liquid-secondary));
+  top: 10%;
+  left: 10%;
+  animation: float 12s ease-in-out infinite;
+}
+
+.liquid-blob-2 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(90deg, var(--liquid-secondary), var(--liquid-accent));
+  bottom: 10%;
+  right: 10%;
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+.liquid-blob-3 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(90deg, var(--liquid-accent), var(--liquid-primary));
+  top: 50%;
+  right: 20%;
+  animation: float 10s ease-in-out infinite;
+}
+
+/* Custom Utilities */
+.text-liquid-primary {
+  color: var(--liquid-primary);
+}
+
+.text-liquid-secondary {
+  color: var(--liquid-secondary);
+}
+
+.text-liquid-accent {
+  color: var(--liquid-accent);
+}
+
+.bg-liquid-primary {
+  background: var(--liquid-primary);
+}
+
+.border-liquid-primary {
+  border-color: var(--liquid-primary);
+}

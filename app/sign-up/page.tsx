@@ -14,6 +14,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { signUp } from "@/lib/auth-client";
 import { Loader2, Eye, EyeOff } from "lucide-react";
+import { LiquidGlassButton } from "@/components/ui/liquid-glass-button";
 
 const signUpSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
@@ -71,11 +72,11 @@ export default function SignUpPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-background px-4 py-8">
-            <Card className="w-full max-w-md">
+        <div className="min-h-screen flex items-center justify-center bg-black px-4 py-8">
+            <Card className="w-full max-w-md bg-black/20 backdrop-blur-lg border border-white/20 rounded-2xl">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
-                    <CardDescription>
+                    <CardTitle className="text-2xl font-bold text-white">Create Account</CardTitle>
+                    <CardDescription className="text-white/80">
                         Enter your details to create a new account
                     </CardDescription>
                 </CardHeader>
@@ -93,12 +94,13 @@ export default function SignUpPage() {
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Full Name</FormLabel>
+                                        <FormLabel className="text-white">Full Name</FormLabel>
                                         <FormControl>
                                             <Input
                                                 placeholder="Enter your full name"
                                                 {...field}
                                                 disabled={isLoading}
+                                                className="bg-black/20 border-white/20 text-white placeholder-white/50"
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -111,13 +113,14 @@ export default function SignUpPage() {
                                 name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Email</FormLabel>
+                                        <FormLabel className="text-white">Email</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="email"
                                                 placeholder="Enter your email"
                                                 {...field}
                                                 disabled={isLoading}
+                                                className="bg-black/20 border-white/20 text-white placeholder-white/50"
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -130,7 +133,7 @@ export default function SignUpPage() {
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Password</FormLabel>
+                                        <FormLabel className="text-white">Password</FormLabel>
                                         <FormControl>
                                             <div className="relative">
                                                 <Input
@@ -138,13 +141,13 @@ export default function SignUpPage() {
                                                     placeholder="Create a strong password"
                                                     {...field}
                                                     disabled={isLoading}
-                                                    className="pr-10"
+                                                    className="pr-10 bg-black/20 border-white/20 text-white placeholder-white/50"
                                                 />
                                                 <Button
                                                     type="button"
                                                     variant="ghost"
                                                     size="sm"
-                                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-white"
                                                     onClick={() => setShowPassword(!showPassword)}
                                                     disabled={isLoading}
                                                 >
@@ -166,7 +169,7 @@ export default function SignUpPage() {
                                 name="confirmPassword"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Confirm Password</FormLabel>
+                                        <FormLabel className="text-white">Confirm Password</FormLabel>
                                         <FormControl>
                                             <div className="relative">
                                                 <Input
@@ -174,13 +177,13 @@ export default function SignUpPage() {
                                                     placeholder="Confirm your password"
                                                     {...field}
                                                     disabled={isLoading}
-                                                    className="pr-10"
+                                                    className="pr-10 bg-black/20 border-white/20 text-white placeholder-white/50"
                                                 />
                                                 <Button
                                                     type="button"
                                                     variant="ghost"
                                                     size="sm"
-                                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-white"
                                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                                     disabled={isLoading}
                                                 >
@@ -197,7 +200,7 @@ export default function SignUpPage() {
                                 )}
                             />
 
-                            <Button type="submit" className="w-full" disabled={isLoading}>
+                            <LiquidGlassButton type="submit" className="w-full rounded-lg py-3" disabled={isLoading} variant="default">
                                 {isLoading ? (
                                     <>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -206,14 +209,14 @@ export default function SignUpPage() {
                                 ) : (
                                     "Create Account"
                                 )}
-                            </Button>
+                            </LiquidGlassButton>
                         </form>
                     </Form>
                 </CardContent>
                 <CardFooter className="text-center">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-white/80">
                         Already have an account?{" "}
-                        <Link href="/sign-in" className="font-medium text-primary hover:underline">
+                        <Link href="/sign-in" className="font-medium text-white hover:underline">
                             Sign in
                         </Link>
                     </p>

@@ -44,7 +44,51 @@ Before you begin, ensure you have the following:
      ```
    - The default values work with Docker setup, modify as needed
 
-4. **Start the development server**
+4. **Database Setup**
+   Choose one of the following options:
+
+   ### Option 1: Docker Setup (Recommended)
+   1. **Start PostgreSQL with Docker:**
+      ```bash
+      npm run db:up
+      ```
+      This starts PostgreSQL in a Docker container with default credentials.
+
+   2. **Push database schema:**
+      ```bash
+      npm run db:push
+      ```
+
+   ### Option 2: Local Database Setup
+   1. Create a PostgreSQL database locally
+   2. Update your environment variables in `.env`:
+      ```env
+      DATABASE_URL=postgresql://username:password@localhost:5432/database_name
+      POSTGRES_DB=your_database_name
+      POSTGRES_USER=your_username
+      POSTGRES_PASSWORD=your_password
+      ```
+   3. Run database migrations:
+      ```bash
+      npm run db:push
+      ```
+
+   ### Option 3: Cloud Database Setup
+   1. Create a PostgreSQL database with your preferred cloud provider (e.g., Supabase, Render, etc.)
+   2. Update your `.env` file with the connection string provided by your provider
+   3. Run database migrations:
+      ```bash
+      npm run db:push
+      ```
+
+5. **Create Admin User**
+   Once your database is set up, create your admin user:
+   ```bash
+   npm run db:seed-admin
+   ```
+   Or visit the sign-up page to create an account manually.
+
+6. **Start the development server**
    ```bash
    npm run dev
    # or
@@ -53,35 +97,7 @@ Before you begin, ensure you have the following:
    pnpm dev
    ```
 
-5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
-
-## Configuration
-
-### Option 1: Docker Setup (Recommended)
-1. **Start PostgreSQL with Docker:**
-   ```bash
-   npm run db:up
-   ```
-   This starts PostgreSQL in a Docker container with default credentials.
-
-2. **Push database schema:**
-   ```bash
-   npm run db:push
-   ```
-
-### Option 2: Local Database Setup
-1. Create a PostgreSQL database locally
-2. Update your environment variables in `.env`:
-   ```env
-   DATABASE_URL=postgresql://username:password@localhost:5432/database_name
-   POSTGRES_DB=your_database_name
-   POSTGRES_USER=your_username
-   POSTGRES_PASSWORD=your_password
-   ```
-3. Run database migrations:
-   ```bash
-   npm run db:push
-   ```
+7. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
 
 ## Environment Variables
 
@@ -219,6 +235,29 @@ docker-compose --profile dev up postgres-dev -d
 
 # Or use the npm script
 npm run db:dev
+```
+
+## Database Setup Guide
+
+If you're having trouble setting up the database, please refer to our detailed [DATABASE_SETUP_GUIDE.md](DATABASE_SETUP_GUIDE.md) which provides step-by-step instructions for:
+
+- Installing PostgreSQL locally on Windows
+- Using Docker for database containerization
+- Setting up a cloud database with Supabase
+- Troubleshooting common database connection issues
+- Creating your admin user
+
+Quick start options:
+```bash
+# Test database connection
+npm run db:test-connection
+
+# For Docker setup
+npm run db:up
+npm run db:push
+
+# For local PostgreSQL setup, first start PostgreSQL service then:
+npm run db:push
 ```
 
 ## Deployment
